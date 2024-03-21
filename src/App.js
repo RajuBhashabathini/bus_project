@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Outlet } from "react-router-dom";
+import "./App.css";
+import { logOutUser } from "./Redux/userDetails";
+import Header from "./Pages/Header";
 
-function App() {
+const App = () => {
+  const user = useSelector((state) => state.userDetails.details[0]);
+  console.log("user 1122 :", user);
+  const dispatch = useDispatch();
+  const { firstName, lastName } = user;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="App p-3 w-full ">
+      <div>
+        <Header />
+      </div>
+      <div className="flex justify-between">
+        <h1 className="font-bold bg-red-400">
+          Welcome {`${firstName} ${lastName}`}
+        </h1>
+        <p
+          onClick={() => {
+            dispatch(logOutUser());
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <Link to={"/signin"}>
+            {firstName === "Guest" ? "Signin" : "SignOut"}
+          </Link>
+        </p>
+      </div>
+      <Outlet />
     </div>
   );
-}
+};
 
 export default App;
