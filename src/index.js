@@ -6,6 +6,7 @@ import App from "./App";
 import { Provider } from "react-redux";
 import store from "./Redux/store";
 import "./index.css";
+import Body from "./Pages/Body";
 
 const Signup = lazy(() => import("./Pages/SignUpPage"));
 const Signin = lazy(() => import("./Pages/Signin"));
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: "/",
+        element: <Body />,
+      },
+      {
         path: "signin",
         element: (
           <Suspense loading={" signin is about to come"}>
@@ -27,7 +32,7 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: (
-          <Suspense loading={" signin is about to come"}>
+          <Suspense loading={"Sign Up is about to come"}>
             <Signup />
           </Suspense>
         ),
@@ -35,7 +40,7 @@ const router = createBrowserRouter([
       {
         path: "dashboard",
         element: (
-          <Suspense loading={" signin is about to come"}>
+          <Suspense loading={"Dashboard is about to come"}>
             <Dashboard />
           </Suspense>
         ),

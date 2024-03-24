@@ -3,6 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import "./App.css";
 import { logOutUser } from "./Redux/userDetails";
 import Header from "./Pages/Header";
+import Footer from "./Pages/Footer";
 
 const App = () => {
   const user = useSelector((state) => state.userDetails.details[0]);
@@ -30,6 +31,7 @@ const App = () => {
         </p>
       </div>
       <Outlet />
+      <Footer />
     </div>
   );
 };

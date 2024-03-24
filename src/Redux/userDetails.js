@@ -7,12 +7,15 @@ const userDetails = createSlice({
       {
         firstName: "Guest",
         lastName: "User",
+        isUserLoggedIn: false,
       },
     ],
   },
   reducers: {
     loggedInUser: (state, action) => {
+      action.payload[0]["isUserLoggedIn"] = true;
       console.log("Redux loggedInUser payload", action.payload);
+      debugger;
       state.details = action.payload;
     },
     logOutUser: (state, action) => {
@@ -22,7 +25,8 @@ const userDetails = createSlice({
       state.details = [
         {
           firstName: "Guest",
-          lastName: "User hello",
+          lastName: "User",
+          isUserLoggedIn: false,
         },
       ];
     },
